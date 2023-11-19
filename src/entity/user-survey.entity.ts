@@ -5,7 +5,7 @@ import { UserOutcome } from './user-outcome.entity';
 @Entity('user_survey')
 export class UserSurvey extends BaseEntity {
 
-  @PrimaryColumn({ type: 'int', comment: '유저가 완료한 설문id' })
+  @PrimaryColumn({ type: 'int', comment: '유저 관련 설문id' })
   survey_id: number;
   
   @Column({ type: 'varchar', comment: '설문 완료 유저이름'})
@@ -14,8 +14,8 @@ export class UserSurvey extends BaseEntity {
   @Column({ type: 'varchar', comment: '설문 완료 유저이메일'})
   email: string;
 
-  @Column({ type: 'varchar', comment: '설문 참여 여부'})
-  is_response: boolean;
+  @Column({ type: 'varchar', comment: '설문 작성자 여부'})
+  is_creator: boolean;
 
   @ManyToOne(() => Survey, (survey) => survey.user_survey, {
     onDelete: 'CASCADE',
@@ -28,8 +28,9 @@ export class UserSurvey extends BaseEntity {
     onDelete: 'CASCADE',
   })
 
+  @ManyToOne(() => Survey, (survey) => survey.user_survey)
   @JoinColumn({ name: 'survey_id' })
-  survey: Survey;
+  survey: Survey[];
 
   user_outcome: UserOutcome[]
 }

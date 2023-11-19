@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
 import { Question } from './question.entity';
 import { UserOutcome } from './user-outcome.entity';
 import { UserSurvey } from './user-survey.entity';
@@ -14,6 +14,9 @@ export class Survey extends BaseEntity {
   @CreateDateColumn()
   created_at: Date;
 
+  @UpdateDateColumn()
+  updated_at: Date;
+
   @Column({
     type: 'varchar',
     nullable: false,
@@ -21,12 +24,6 @@ export class Survey extends BaseEntity {
     comment: '설문완료 안내문',
   })
   thanks_message: string;
-
-  @Column({ type: 'varchar', comment: '설문 생성 유저이름'})
-  creator_name: string
-  
-  @Column({ type: 'varchar', comment: '설문 생성 유저 이메일'})
-  creator_email: string
 
   @OneToMany(() => Question, (question) => question.survey)
   question: Question[];
