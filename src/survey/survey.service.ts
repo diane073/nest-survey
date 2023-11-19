@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Survey } from 'src/entity/survey.entity';
 import { UserSurvey } from 'src/entity/user-survey.entity';
 import { FindOneOptions, Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateSurveyInput, UpdateSurveyInput } from './survey.dto';
 import { ResponseHandler } from 'src/common/base-handler';
 import { SuccessHandler as SH } from 'src/common/status-handler';
@@ -9,7 +10,10 @@ import { SuccessHandler as SH } from 'src/common/status-handler';
 @Injectable()
 export class SurveyService {
   constructor(
+    @InjectRepository(Survey)
     private surveyRepo: Repository<Survey>,
+    
+    @InjectRepository(UserSurvey)
     private userSurveyRepo: Repository<UserSurvey>,
   ) {}
 
