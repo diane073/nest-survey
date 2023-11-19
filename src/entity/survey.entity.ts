@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
+import { BaseEntity } from './base.entity';
 import { Question } from './question.entity';
 import { UserOutcome } from './user-outcome.entity';
 import { UserSurvey } from './user-survey.entity';

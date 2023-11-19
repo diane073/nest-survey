@@ -1,9 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, ManyToOne, OneToMany, JoinColumn, Unique} from 'typeorm';
+import { BaseEntity } from './base.entity';
 import { UserOutcome } from './user-outcome.entity';
 import { Survey } from './survey.entity';
 import { Option } from './option.entity';
 
 @Entity('question')
+@Unique(['id'])
 export class Question extends BaseEntity {
   @PrimaryColumn({ type: 'int', nullable: false })
   survey_id: number;

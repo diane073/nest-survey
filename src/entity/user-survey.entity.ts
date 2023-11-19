@@ -1,10 +1,10 @@
-import { Column, Entity, PrimaryColumn, ManyToOne, OneToMany, JoinColumn, BaseEntity } from 'typeorm';
+import { Column, Entity, PrimaryColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { BaseEntity } from './base.entity';
 import { Survey } from './survey.entity';
 import { UserOutcome } from './user-outcome.entity';
 
 @Entity('user_survey')
 export class UserSurvey extends BaseEntity {
-
   @PrimaryColumn({ type: 'int', comment: '유저 관련 설문id' })
   survey_id: number;
   
@@ -20,17 +20,11 @@ export class UserSurvey extends BaseEntity {
   @ManyToOne(() => Survey, (survey) => survey.user_survey, {
     onDelete: 'CASCADE',
   })
-
+  @JoinColumn({ name: 'survey_id' })
+  survey: Survey[];
+  
   @OneToMany(() => UserOutcome, user_outcome => user_outcome.user_survey, {
     onDelete: 'CASCADE',
   })
-  @ManyToOne(() => UserSurvey, user_survey => user_survey.user_outcome, {
-    onDelete: 'CASCADE',
-  })
-
-  @ManyToOne(() => Survey, (survey) => survey.user_survey)
-  @JoinColumn({ name: 'survey_id' })
-  survey: Survey[];
-
   user_outcome: UserOutcome[]
 }

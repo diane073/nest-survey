@@ -18,8 +18,8 @@ export class UserOutcome extends BaseEntity {
   @Column({ type: 'int', comment: '설문 결과 점수'})
   total_score: number;
 
-  @Column({ type: 'array', nullable: false, comment: '설문 응답 내용' })
-  user_answer: string;
+  @Column({ type: 'text', array: true, nullable: false, comment: '설문 응답 내용' })
+  user_answer: string[];
 
   @ManyToOne(() => Survey)
   @JoinColumn({ name: 'survey_id' })
@@ -31,12 +31,7 @@ export class UserOutcome extends BaseEntity {
 
   @ManyToOne(() => UserSurvey, user_survey => user_survey.user_outcome, {
     onDelete: 'CASCADE',
-  })
-
-  @JoinColumn([
-    { name: 'survey_id', referencedColumnName: 'survey_id' },
-    { name: 'user_id', referencedColumnName: 'user_id' },
-  ])
-
+  })  
+  @JoinColumn({ name: 'user_id' })
   user_survey: UserSurvey;
 }
