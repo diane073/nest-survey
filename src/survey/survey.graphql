@@ -1,0 +1,33 @@
+type Survey {
+  id: Int!
+  title: String!
+  description: String!
+  thanks_message: String!
+  question: [Question]
+  created_at: DateTime!
+  update_at: DateTime!
+}
+
+type Query {
+  surveyList: [Survey]
+  survey(id: Int!): Survey
+  createdSurveyList(id: Int): [Survey]
+}
+
+type Mutation {
+  createSurvey(createSurveyInput: CreateSurveyInput): Survey
+  updateSurvey(id: Int!, updateSurveyInput: UpdateSurveyInput): Survey
+  deleteSurvey(id: Int!): Survey
+}
+
+input CreateSurveyInput {
+  title: String!
+  description: String!
+  thanks_message: String!
+}
+
+input UpdateSurveyInput {
+  title: String
+  description: String
+  thanks_message: String
+}
