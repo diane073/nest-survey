@@ -21,8 +21,8 @@ input UpdateQuestionInput {
 }
 
 extend type Query {
-  getQuestionById(id: Int!): Question!
-  getAllQuestionsBySurveyId(surveyId: Int!): [Question]!
+  getQuestion(id: Int!): Question!
+  # getAllQuestionsBySurveyId(surveyId: Int!): [Question]!
 }
 
 extend type Mutation {
