@@ -15,20 +15,25 @@ import { Question } from './entity/question.entity';
 import { Option } from './entity/option.entity';
 import { UserSurvey } from './entity/user-survey.entity';
 import { UserOutcome } from './entity/user-outcome.entity';
+import * as dotenv from 'dotenv'; 
+
+dotenv.config();
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `${__dirname}/../env/.${process.env.NODE_ENV}.env`,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
       isGlobal: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      typePaths: ['./src/**/*.graphql'],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
+      database: process.env.DB_DATABASE,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       entities: [Survey, Question, Option, UserOutcome, UserSurvey],
