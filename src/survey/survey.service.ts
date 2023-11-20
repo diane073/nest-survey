@@ -12,7 +12,7 @@ export class SurveyService {
   constructor(
     @InjectRepository(Survey)
     private surveyRepo: Repository<Survey>,
-    
+
     @InjectRepository(UserSurvey)
     private userSurveyRepo: Repository<UserSurvey>,
   ) {}

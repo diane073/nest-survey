@@ -7,7 +7,6 @@ import { SurveyService } from './survey.service';
 export class SurveyResolver {
   constructor(
     private readonly surveyService: SurveyService,
-    private readonly userSurveyService: UserSurveyService
   ) {}
 
   @Query()

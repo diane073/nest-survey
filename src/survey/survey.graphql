@@ -1,14 +1,17 @@
+scalar Date
+
 type Survey {
   id: Int!
   title: String!
   description: String!
   thanks_message: String!
   question: [Question]
-  created_at: DateTime!
-  update_at: DateTime!
+  created_at: Date!
+  update_at: Date!
 }
 
 type Query {
+  getSurvey(idOrEmail: String!): Survey
   surveyList: [Survey]
   survey(id: Int!): Survey
   createdSurveyList(id: Int): [Survey]
