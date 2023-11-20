@@ -1,5 +1,4 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { UserSurveyService } from 'src/user-survey/user-survey.service';
 import { CreateSurveyInput, UpdateSurveyInput } from './survey.dto';
 import { SurveyService } from './survey.service';
 
