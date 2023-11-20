@@ -1,0 +1,34 @@
+type Option {
+  question_id: Int!
+  option_number: Int!
+  option_content: String!
+  score: Int!
+  question: Question!
+}
+
+input CreateOptionInput {
+  question_id: Int!
+  option_number: Int!
+  option_content: String!
+  score: Int!
+}
+
+input UpdateOptionInput {
+  option_content: String
+  score: Int
+}
+
+extend type Query {
+  getOptionById(questionId: Int!, optionNumber: Int!): Option!
+  getAllOptionsByQuestionId(questionId: Int!): [Option]!
+}
+
+extend type Mutation {
+  createOption(input: CreateOptionInput!): Option!
+  updateOption(
+    questionId: Int!
+    optionNumber: Int!
+    input: UpdateOptionInput!
+  ): Option!
+  deleteOption(questionId: Int!, optionNumber: Int!): Option!
+}

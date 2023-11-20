@@ -1,0 +1,18 @@
+input CreateUserSurveyInput {
+  survey_id: Int!
+  username: String!
+  email: String!
+  is_creator: Boolean!
+}
+
+input UpdateUserSurveyInput {
+  is_creator: Boolean!
+}
+
+type UserSurvey {
+  survey_id: Int!
+  username: String!
+  email: String!
+  is_creator: Boolean!
+  user_outcome: [UserOutcome]
+}

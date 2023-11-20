@@ -1,0 +1,32 @@
+type Question {
+  id: Int!
+  survey_id: Int!
+  question_number: Int!
+  question_content: String!
+  question_example: String!
+  options: [Option]!
+  user_outcome: [UserOutcome]
+}
+
+input CreateQuestionInput {
+  survey_id: Int!
+  question_number: Int!
+  question_content: String!
+  question_example: String!
+}
+
+input UpdateQuestionInput {
+  question_content: String
+  question_example: String
+}
+
+extend type Query {
+  getQuestionById(id: Int!): Question!
+  getAllQuestionsBySurveyId(surveyId: Int!): [Question]!
+}
+
+extend type Mutation {
+  createQuestion(input: CreateQuestionInput!): Question
+  updateQuestion(id: Int!, input: UpdateQuestionInput!): Question
+  deleteQuestion(id: Int!): Question
+}

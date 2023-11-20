@@ -2,7 +2,7 @@ import { ArgsType, Field, InputType } from '@nestjs/graphql';
 import { IsNotEmpty, IsOptional, IsString, IsInt } from 'class-validator';
 
 @InputType()
-export class CreateOptionDto {
+export class CreateOptionInput {
   @Field(() => Number)
   @IsNotEmpty()
   @IsInt()
@@ -16,7 +16,7 @@ export class CreateOptionDto {
   @Field(() => String)
   @IsNotEmpty()
   @IsString()
-  optionContent: string;
+  option_content: string;
 
   @Field(() => Number)
   @IsNotEmpty()
@@ -24,7 +24,7 @@ export class CreateOptionDto {
 }
 
 @InputType()
-export class UpdateOptionDto {
+export class UpdateOptionInput {
   @Field(() => Number, { nullable: false })
   @IsOptional()
   question_id: number;
