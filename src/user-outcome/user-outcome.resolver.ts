@@ -9,12 +9,12 @@ export class UserOutcomeResolver {
   ) {}
 
   @Query()
-  getUserOutcomeListBySurvey(@Args('survey/:survey_id') survey_id: number) {
+  getUserOutcomesBySurvey(@Args('survey/:survey_id') survey_id: number) {
     return this.userOutcomeService.findAllBySurveyId(survey_id)
   }
 
   @Query()
-  getUserOutcomeListByUser(@Args('user/:user_id') user_id: number) {
+  getUserOutcomesByUser(@Args('user/:user_id') user_id: number) {
     return this.userOutcomeService.findAllByUserId(user_id)
   }
 

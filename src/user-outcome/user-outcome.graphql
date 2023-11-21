@@ -19,7 +19,8 @@ input CreateUserOutcomeInput {
 
 extend type Query {
   getUserOutcome(id: Int!): UserOutcome!
-  getAllUserOutcomesBySurvey(survey_id: Int!): [UserOutcome]!
+  getUserOutcomesBySurvey(survey_id: Int!): [UserOutcome]!
+  getUserOutcomesByUser(user_id: Int!): [UserOutcome]!
 }
 
 extend type Mutation {
