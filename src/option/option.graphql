@@ -19,16 +19,15 @@ input UpdateOptionInput {
 }
 
 extend type Query {
-  getOptionById(questionId: Int!, optionNumber: Int!): Option!
-  getAllOptionsByQuestionId(questionId: Int!): [Option]!
+  getOption(question_id: Int!, option_number: Int!): Option!
 }
 
 extend type Mutation {
   createOption(input: CreateOptionInput!): Option!
   updateOption(
-    questionId: Int!
-    optionNumber: Int!
+    question_id: Int!
+    option_number: Int!
     input: UpdateOptionInput!
   ): Option!
-  deleteOption(questionId: Int!, optionNumber: Int!): Option!
+  deleteOption(question_id: Int!, option_number: Int!): Option!
 }
