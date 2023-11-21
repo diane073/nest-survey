@@ -22,105 +22,50 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Project
+**nest-survey**
+: nest.js-based multiple choice questionnaire application
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Development environment
+- os: mac M2 Pro
+- npm: 10.2.0
+- node: v21.1.0
+- nest-cli: 10.2.1
+- postgresql: 14.10 (Homebrew)
 
-```bash
+## ERD
+<img width="677" alt="nestsurvey_erd" src="https://github.com/diane073/TIL/assets/127281732/14e36c81-af5f-4834-95f4-1a53379081e4">
+
+## How to run
+1. 프로젝트의 개발 환경과 버전을 맞춰주세요.
+2. postgresql 유저와 사용할 데이터베이스를 생성합니다.
+3. .env 파일의 postgresql 변수를 설정합니다.
+4. 터미널에서 아래 명령어를 실행합니다.
+
+
+## install dependency
+
+```
 $ npm install
 ```
 
 ## Running the app
 
-```bash
-# development
-$ npm run start
+* nest-survey는 개발 중인 어플리케이션으로 start:dev를 추천합니다
 
-# watch mode
+```
+# development
 $ npm run start:dev
 
 # production mode
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+## project tree
 
 ```
 nest-survey
-├─ .eslintrc.js
-├─ .git
-│  ├─ FETCH_HEAD
-│  ├─ HEAD
-│  ├─ config
-│  ├─ description
-│  ├─ hooks
-│  │  ├─ applypatch-msg.sample
-│  │  ├─ commit-msg.sample
-│  │  ├─ fsmonitor-watchman.sample
-│  │  ├─ post-update.sample
-│  │  ├─ pre-applypatch.sample
-│  │  ├─ pre-commit.sample
-│  │  ├─ pre-merge-commit.sample
-│  │  ├─ pre-push.sample
-│  │  ├─ pre-rebase.sample
-│  │  ├─ pre-receive.sample
-│  │  ├─ prepare-commit-msg.sample
-│  │  └─ update.sample
-│  ├─ index
-│  ├─ info
-│  │  └─ exclude
-│  ├─ objects
-│  │  ├─ 02
-│  │  │  └─ 5e4a3e74ab91117f8670586ca1617b62f4b8bc
-│  │  ├─ 22
-│  │  │  └─ f55adc5647206db11558139164c3deb77f5c01
-│  │  ├─ 25
-│  │  │  └─ 9de13c733a7284a352a5cba1e9fd57e97e431d
-│  │  ├─ 2b
-│  │  │  └─ 4b80d6b61109a34fd2fc8cd802c693dfd02737
-│  │  ├─ d6
-│  │  │  └─ 9a7ab9009d2d3850cf941a0ce611ea85dbb420
-│  │  ├─ dc
-│  │  │  └─ b72794f5300a3e0ccd2ad0669d802b62f3d370
-│  │  ├─ ec
-│  │  │  └─ 32d6efc9b533c1ae88e5e7280146574135b265
-│  │  ├─ f9
-│  │  │  └─ aa683b1ad5cffc76da9ad4b77c562ac4c2b399
-│  │  ├─ info
-│  │  └─ pack
-│  └─ refs
-│     ├─ heads
-│     ├─ remotes
-│     │  └─ origin
-│     │     └─ main
-│     └─ tags
 ├─ .gitignore
 ├─ .prettierrc
 ├─ README.md
@@ -132,116 +77,8 @@ nest-survey
 │  ├─ app.controller.ts
 │  ├─ app.module.ts
 │  ├─ app.service.ts
-│  ├─ configuration.ts
 │  ├─ main.ts
-│  ├─ survey
-│  │  ├─ survey.controller.spec.ts
-│  │  ├─ survey.controller.ts
-│  │  ├─ survey.module.ts
-│  │  ├─ survey.service.spec.ts
-│  │  └─ survey.service.ts
-│  └─ users
-│     ├─ entity
-│     │  └─ user.entity.ts
-│     ├─ users.controller.spec.ts
-│     ├─ users.controller.ts
-│     ├─ users.module.ts
-│     ├─ users.service.spec.ts
-│     └─ users.service.ts
-├─ test
-│  ├─ app.e2e-spec.ts
-│  └─ jest-e2e.json
-├─ tsconfig.build.json
-└─ tsconfig.json
-
-```
-```
-nest-survey
-├─ .eslintrc.js
-├─ .prettierrc
-├─ README.md
-├─ nest-cli.json
-├─ package-lock.json
-├─ package.json
-├─ src
-│  ├─ app.controller.spec.ts
-│  ├─ app.controller.ts
-│  ├─ app.module.ts
-│  ├─ app.service.ts
-│  ├─ configuration.ts
-│  ├─ main.ts
-│  ├─ survey
-│  │  ├─ survey.controller.spec.ts
-│  │  ├─ survey.controller.ts
-│  │  ├─ survey.module.ts
-│  │  ├─ survey.service.spec.ts
-│  │  └─ survey.service.ts
-│  └─ users
-│     ├─ entity
-│     │  └─ user.entity.ts
-│     ├─ users.controller.spec.ts
-│     ├─ users.controller.ts
-│     ├─ users.module.ts
-│     ├─ users.service.spec.ts
-│     └─ users.service.ts
-├─ test
-│  ├─ app.e2e-spec.ts
-│  └─ jest-e2e.json
-├─ tsconfig.build.json
-└─ tsconfig.json
-
-```
-```
-nest-survey
-├─ .eslintrc.js
-├─ .prettierrc
-├─ README.md
-├─ nest-cli.json
-├─ package-lock.json
-├─ package.json
-├─ src
-│  ├─ app.controller.spec.ts
-│  ├─ app.controller.ts
-│  ├─ app.module.ts
-│  ├─ app.service.ts
-│  ├─ main.ts
-│  ├─ status
-│  │  ├─ response-handler.ts
-│  │  └─ status-handler.ts
-│  ├─ survey
-│  │  ├─ survey.controller.spec.ts
-│  │  ├─ survey.controller.ts
-│  │  ├─ survey.module.ts
-│  │  ├─ survey.service.spec.ts
-│  │  └─ survey.service.ts
-│  └─ users
-│     ├─ entity
-│     │  └─ user.entity.ts
-│     ├─ users.controller.spec.ts
-│     ├─ users.controller.ts
-│     ├─ users.module.ts
-│     ├─ users.service.spec.ts
-│     └─ users.service.ts
-├─ test
-│  ├─ app.e2e-spec.ts
-│  └─ jest-e2e.json
-├─ tsconfig.build.json
-└─ tsconfig.json
-
-```
-```
-nest-survey
-├─ .eslintrc.js
-├─ .prettierrc
-├─ README.md
-├─ nest-cli.json
-├─ package-lock.json
-├─ package.json
-├─ src
-│  ├─ app.controller.spec.ts
-│  ├─ app.controller.ts
-│  ├─ app.module.ts
-│  ├─ app.service.ts
+│  ├─ my-logger.ts
 │  ├─ common
 │  │  ├─ base-handler.ts
 │  │  └─ status-handler.ts
@@ -251,19 +88,18 @@ nest-survey
 │  │  ├─ question.entity.ts
 │  │  ├─ survey.entity.ts
 │  │  └─ user-survey.entity.ts
-│  ├─ main.ts
 │  ├─ option
-│  │  ├─ option.controller.spec.ts
-│  │  ├─ option.controller.ts
+│  │  ├─ option.resolver.spec.ts
+│  │  ├─ option.resolver.ts
 │  │  ├─ option.dto.ts
 │  │  ├─ option.module.ts
 │  │  ├─ option.service.spec.ts
 │  │  └─ option.service.ts
-│  ├─ ormconfig.json
 │  ├─ question
-│  │  ├─ question.controller.spec.ts
-│  │  ├─ question.controller.ts
+│  │  ├─ question.resolver.spec.ts
+│  │  ├─ question.resolver.ts
 │  │  ├─ question.dto.ts
+│  │  ├─ question.graphql
 │  │  ├─ question.module.ts
 │  │  ├─ question.service.spec.ts
 │  │  └─ question.service.ts
@@ -275,21 +111,18 @@ nest-survey
 │  │  ├─ survey.resolver.ts
 │  │  ├─ survey.service.spec.ts
 │  │  └─ survey.service.ts
+│  ├─ user-outcome
+│  │  ├─ user-outcome.dto.ts
+│  │  ├─ user-outcome.graphql
+│  │  ├─ user-outcome.module.ts
+│  │  ├─ user-outcome.resolver.spec.ts
+│  │  ├─ user-outcome.resolver.ts
+│  │  ├─ user-outcome.service.spec.ts
+│  │  └─ user-outcome.service.ts
 │  ├─ user-survey
-│  │  ├─ user-survey.controller.spec.ts
-│  │  ├─ user-survey.controller.ts
 │  │  ├─ user-survey.dto.ts
-│  │  ├─ user-survey.module.ts
-│  │  ├─ user-survey.service.spec.ts
-│  │  └─ user-survey.service.ts
-│  └─ users-practice
-│     ├─ entity
-│     │  └─ user.entity.ts
-│     ├─ users.controller.spec.ts
-│     ├─ users.controller.ts
-│     ├─ users.module.ts
-│     ├─ users.service.spec.ts
-│     └─ users.service.ts
+│  │  ├─ user-survey.graphql
+│  │  └─ user-survey.module.ts
 ├─ test
 │  ├─ app.e2e-spec.ts
 │  └─ jest-e2e.json
