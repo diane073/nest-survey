@@ -17,31 +17,11 @@ input CreateUserOutcomeInput {
   user_answer: [String!]!
 }
 
-input UpdateUserOutcomeInput {
-  total_score: Int!
-  user_answer: [String!]!
-}
-
 extend type Query {
-  getUserOutcome(
-    survey_id: Int!
-    user_id: Int!
-    question_id: Int!
-  ): UserOutcome!
+  getUserOutcome(id: Int!): UserOutcome!
   getAllUserOutcomesBySurvey(survey_id: Int!): [UserOutcome]!
 }
 
 extend type Mutation {
   createUserOutcome(input: CreateUserOutcomeInput!): UserOutcome!
-  updateUserOutcome(
-    survey_id: Int!
-    user_id: Int!
-    question_id: Int!
-    input: UpdateUserOutcomeInput!
-  ): UserOutcome!
-  deleteUserOutcome(
-    surveyId: Int!
-    userId: Int!
-    questionId: Int!
-  ): UserOutcome!
 }

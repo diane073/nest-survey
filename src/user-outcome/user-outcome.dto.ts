@@ -1,5 +1,5 @@
 import { ArgsType, Field } from '@nestjs/graphql';
-import { IsInt, IsNotEmpty, IsArray } from 'class-validator';
+import { IsInt, IsNotEmpty, IsArray, IsString, IsEmail } from 'class-validator';
 
 @ArgsType()
 export class CreateUserOutcomeInput {
@@ -18,19 +18,16 @@ export class CreateUserOutcomeInput {
   @IsInt()
   question_id: number;
 
-  @Field(() => Number)
+  @Field(() => String)
   @IsNotEmpty()
-  @IsInt()
-  total_score: number;
+  @IsString()
+  username: string;
 
-  @Field(() => [String])
-  @IsArray()
+  @Field(() => String)
   @IsNotEmpty()
-  user_answer: string[];
-}
+  @IsEmail()
+  email: string;
 
-@ArgsType()
-export class UpdateUserOutcomeInput {
   @Field(() => Number)
   @IsNotEmpty()
   @IsInt()
