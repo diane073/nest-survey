@@ -30,7 +30,7 @@ export class SurveyService {
     return findCurrentSurvey;
   }
 
-  async getSurveyListByUser(email: string) {
+  async getSurveyListByUser(email: string): Promise<{ status_code: number; data: any; message: string; }> {
     const userSurvey = await this.userSurveyRepo.findOne({ where: { email } } as FindOneOptions<UserSurvey>);
     ResponseHandler.findObjectValidater(userSurvey);    
     const surveyIds = Array.isArray(userSurvey.survey_id) 
@@ -42,28 +42,26 @@ export class SurveyService {
       ResponseHandler.findObjectValidater(survey);
       surveys.push(survey);
     }
-    return surveys;
+    return SH.success(surveys, 'Survey list has been retrieved.');
   }
     
-  create(createSurveyInput: CreateSurveyInput) {
+  create(createSurveyInput: CreateSurveyInput): { status_code: number; data: any; message: string; } {
     const newEntity = this.surveyRepo.create(createSurveyInput);
     const saveData = this.surveyRepo.save(newEntity)
     return SH.created(saveData, 'New survey has been created!');
   }
 
-  async update(id: number, updateSurveyInput: UpdateSurveyInput) {
+  async update(id: number, updateSurveyInput: UpdateSurveyInput): Promise<{ status_code: number; data: any; message: string; }> {
     const findOneSurvey = await this.getOneSurvey(id);
     ResponseHandler.findObjectValidater(findOneSurvey);
-  
     const updatedSurvey = this.surveyRepo.merge(findOneSurvey, updateSurveyInput);
     const newEntity = this.surveyRepo.save(updatedSurvey);
     return SH.success(newEntity, 'Survey has been updated.');
   }
 
-  async delete(id: number) {
+  async delete(id: number): Promise<{ status_code: number; data: any; message: string; }> {
     const findOneSurvey = await this.getOneSurvey(id);
     ResponseHandler.findObjectValidater(findOneSurvey);
-
     const deletedSurvey = await this.surveyRepo.remove(findOneSurvey);
     return SH.success(deletedSurvey, 'Survey has been deleted.');
   }

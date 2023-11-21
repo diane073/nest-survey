@@ -19,11 +19,11 @@ export class QuestionService {
     private readonly surveyService: SurveyService, 
   ) {}
 
-  findOne(id: number){
+  findOne(id: number): Promise<Question>{
     return this.questionRepo.findOne({ where: { id }, relations: { option: true }})
   }
 
-  async create(createQuestionInput: CreateQuestionInput){
+  async create(createQuestionInput: CreateQuestionInput): Promise<{ status_code: number; data: any; message: string; }>{
     const findCurrentSurvey = await this.surveyService.getOneSurvey(
         createQuestionInput.survey_id,
       );
@@ -34,7 +34,7 @@ export class QuestionService {
     return SH.created(saveData, 'New question has been created!')
   }
 
-  async update(id: number, updateQuestionInput: UpdateQuestionInput) {
+  async update(id: number, updateQuestionInput: UpdateQuestionInput): Promise<{ status_code: number; data: any; message: string; }> {
     const findOneQuestion = await this.findOne(id);
     ResponseHandler.findObjectValidater(findOneQuestion);
     const updatedQuestion = this.questionRepo.merge(findOneQuestion, updateQuestionInput);
@@ -42,11 +42,10 @@ export class QuestionService {
     return SH.success(newEntity, 'Question has been updated.');
   }
 
-  async delete(id: number){
+  async delete(id: number): Promise<{ status_code: number; data: any; message: string; }>{
     const findOneQuestion = await this.findOne(id);
     ResponseHandler.findObjectValidater(findOneQuestion);
     const deletedQuestion = await this.questionRepo.remove(findOneQuestion);
     return SH.success(deletedQuestion, 'Question has been deleted.');
   }
-
 }
