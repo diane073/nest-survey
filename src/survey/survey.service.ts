@@ -3,7 +3,7 @@ import { FindOneOptions, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Survey } from 'src/entity/survey.entity';
 import { UserSurvey } from 'src/entity/user-survey.entity';
-import { CreateSurveyInput, UpdateSurveyInput } from './survey.dto';
+import { CreateSurveyWithUserInput, UpdateSurveyInput } from './survey.dto';
 import { ResponseHandler } from 'src/common/base-handler';
 import { SuccessHandler as SH } from 'src/common/status-handler';
 
@@ -45,10 +45,24 @@ export class SurveyService {
     return SH.success(surveys, 'Survey list has been retrieved.');
   }
     
-  create(createSurveyInput: CreateSurveyInput): { status_code: number; data: any; message: string; } {
-    const newEntity = this.surveyRepo.create(createSurveyInput);
-    const saveData = this.surveyRepo.save(newEntity)
-    return SH.created(saveData, 'New survey has been created!');
+  async create(createSurveyWithUserInput: CreateSurveyWithUserInput) {
+    const newSurvey = this.surveyRepo.create(createSurveyWithUserInput);
+    const saveData = await this.surveyRepo.save(newSurvey)
+
+    const findExistUser = await this.userSurveyRepo.findOne({ where: { email: createSurveyWithUserInput.email}})
+    if (!findExistUser) {
+      const newUserSurvey = this.userSurveyRepo.create({
+        survey_id: saveData.id,
+        username: createSurveyWithUserInput.username,
+        email: createSurveyWithUserInput.email,
+        is_creator: true,
+      });
+      await this.userSurveyRepo.save(newUserSurvey);
+    } else {
+      this.userSurveyRepo.update(findExistUser.id, { is_creator: true });
+    }
+  
+    return SH.created({saveData}, 'New survey has been created!');
   }
 
   async update(id: number, updateSurveyInput: UpdateSurveyInput): Promise<{ status_code: number; data: any; message: string; }> {

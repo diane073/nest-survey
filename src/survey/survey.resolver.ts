@@ -1,5 +1,5 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { CreateSurveyInput, UpdateSurveyInput } from './survey.dto';
+import { CreateSurveyWithUserInput, UpdateSurveyInput } from './survey.dto';
 import { SurveyService } from './survey.service';
 
 @Resolver('Survey')
@@ -19,9 +19,9 @@ export class SurveyResolver {
 
   @Mutation()
   createSurvey(
-    @Args('createSurveyInput') createSurveyInput: CreateSurveyInput,
+    @Args('createSurveyInput') createSurveyWithUserInput: CreateSurveyWithUserInput,
   ) {
-    return this.surveyService.create(createSurveyInput);
+    return this.surveyService.create(createSurveyWithUserInput);
   }
 
   @Mutation()

@@ -1,5 +1,5 @@
 import { ArgsType, Field, } from '@nestjs/graphql';
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 @ArgsType()
 export class CreateUserSurveyInput {
@@ -14,13 +14,13 @@ export class CreateUserSurveyInput {
 
   @Field(() => String)
   @IsNotEmpty()
-  @IsString()
+  @IsEmail()
   email: string;
 
-  @Field(() => Boolean)
-  @IsNotEmpty()
+  @Field(() => Boolean, { defaultValue: false })
+  @IsOptional()
   @IsBoolean()
-  is_creator: boolean;
+  is_creator?: boolean;
 }
 
 @ArgsType()

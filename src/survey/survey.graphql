@@ -18,15 +18,17 @@ type Query {
 }
 
 type Mutation {
-  createSurvey(createSurveyInput: CreateSurveyInput): Survey
+  createSurvey(createSurveyInput: CreateSurveyWithUserInput): Survey
   updateSurvey(id: Int!, updateSurveyInput: UpdateSurveyInput): Survey
   deleteSurvey(id: Int!): Survey
 }
 
-input CreateSurveyInput {
+input CreateSurveyWithUserInput {
   title: String!
   description: String!
   thanks_message: String!
+  username: String!
+  email: String!
 }
 
 input UpdateSurveyInput {
