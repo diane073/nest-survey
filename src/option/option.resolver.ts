@@ -14,17 +14,17 @@ export class OptionResolver {
     }
 
     @Mutation()
-    createQuestion(@Args('createOptionInput') createOptionInput: CreateOptionInput){
+    createOption(@Args('createOptionInput') createOptionInput: CreateOptionInput){
         return this.optionService.create(createOptionInput);
     }
 
     @Mutation()
-    updateQuestion(@Args('id') id: number, @Args('updateOptionInput') updateOptionInput: UpdateOptionInput){
+    updateOption(@Args('id') id: number, @Args('updateOptionInput') updateOptionInput: UpdateOptionInput){
         return this.optionService.update(id, updateOptionInput);
     }
 
     @Mutation()
-    deleteQuestion(@Args('id') id: number){
+    deleteOption(@Args('id') id: number){
         return this.optionService.delete(id);
     }
 
