@@ -28,7 +28,7 @@
 
 
 ## Development environment
-- os: mac M2 Pro
+- os: Mac / Ventura 13.5.1
 - npm: 10.2.0
 - node: v21.1.0
 - nest-cli: 10.2.1
@@ -87,11 +87,13 @@ nest-survey
 │  │  ├─ option.entity.ts
 │  │  ├─ question.entity.ts
 │  │  ├─ survey.entity.ts
+│  │  ├─ user-outcome.entity.ts
 │  │  └─ user-survey.entity.ts
 │  ├─ option
 │  │  ├─ option.resolver.spec.ts
 │  │  ├─ option.resolver.ts
 │  │  ├─ option.dto.ts
+│  │  ├─ option.graphql
 │  │  ├─ option.module.ts
 │  │  ├─ option.service.spec.ts
 │  │  └─ option.service.ts
